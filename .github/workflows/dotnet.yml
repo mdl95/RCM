@@ -6,10 +6,15 @@ on:
   pull_request:
     branches: [ main ]
 
+defaults:
+  run:
+    working-directory: rcm-automation
+    
 jobs:
   build:
 
     runs-on: windows-latest
+    #ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
