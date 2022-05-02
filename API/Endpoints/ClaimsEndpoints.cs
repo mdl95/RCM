@@ -16,13 +16,13 @@ namespace RCM.API.Endpoints
             $"{Config.BASE_URN}/calljob";
 
         public static string GetCallJobs_LimitAndOffset_Endpoint(int limit, long offset) =>
-            $"{Config.BASE_URN}/calljob?limit={limit}&offset={offset}";
+            $"{Config.BASE_URN}/calljob?Limit={limit}&Offset={offset}";
 
         public static string GetCallJobs_Filters_Endpoint(string filters) =>
-            $"{Config.BASE_URN}/calljob?filters={filters}";
+            $"{Config.BASE_URN}/calljob?Filter={filters}";
 
         public static string GetCallJobs_Sorts_Endpoint(string sorts) =>
-            $"{Config.BASE_URN}/calljob?sorts={sorts}";
+            $"{Config.BASE_URN}/calljob?Sort={sorts}";
 
         public static string GetOaiClaimCallJobEndpoint(string oaiClaimId) =>
             $"{Config.BASE_URN}/calljob/{oaiClaimId}";

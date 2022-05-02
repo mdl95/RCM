@@ -80,7 +80,8 @@ namespace RCM.API.Tests.Claims
         }
 
 
-        [TestCase("status", false, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_Sort_200")]
+        [TestCase("jobId", true, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_Sort_200")]
+        [TestCase("jobId", false, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_Sort_200")]
         public async Task API_Claims_CallJob_GET_AllCallJobs_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code)
         {
             var sort = SetSort(path, descending);
@@ -100,7 +101,14 @@ namespace RCM.API.Tests.Claims
 
                 for (int i = 1; i < callJob.Data.Count; ++i)
                 {
-                    Assert.That(callJob.Data[i].Status, Is.LessThanOrEqualTo(callJob.Data[i - 1].Status));
+                    if (descending == true)
+                    {
+                        Assert.That(callJob.Data[i].JobId, Is.LessThanOrEqualTo(callJob.Data[i - 1].JobId));
+                    }
+                    else
+                    {
+                        Assert.That(callJob.Data[i].JobId, Is.GreaterThanOrEqualTo(callJob.Data[i - 1].JobId));
+                    }
                 }
             });
         }
@@ -201,7 +209,6 @@ namespace RCM.API.Tests.Claims
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
                 Assert.That(callJobData.OaiClaimId, Is.EqualTo(oaiClaimId));
-                Assert.That(callJobData.PhoneNumber, Is.EqualTo(phoneNumber));
             });
         }
 

@@ -140,7 +140,7 @@ namespace RCM.API.Tests
             {
                 Path = path,
                 Operator = op,
-                Value = value
+                Value = value.ToString()
             };
 
             string serializedFilter = System.Text.Json.JsonSerializer.Serialize(filter);
