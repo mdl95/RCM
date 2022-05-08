@@ -32,4 +32,19 @@
     <Folder Include="UI\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="API\ClaimImportFiles\Random-20Rows.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="API\ClaimImportFiles\Random-4Rows-2Malformed.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="API\ClaimImportFiles\Random-5Rows-3BadField.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="API\ClaimImportFiles\Random-BadDate.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
