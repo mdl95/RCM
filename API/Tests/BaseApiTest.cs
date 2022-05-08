@@ -162,7 +162,7 @@ namespace RCM.API.Tests
 
         protected string GetSolutionDirectory()
         {
-            string solutionPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
+            string solutionPath = Directory.GetCurrentDirectory();
             return solutionPath;
         }
 
