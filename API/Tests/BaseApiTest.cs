@@ -73,7 +73,7 @@ namespace RCM.API.Tests
                 }
 
                 Console.WriteLine($"    Status Code: {(int)response.StatusCode} - {response.StatusCode}");
-                Console.WriteLine($"\nResponse Body: \n{PrettifyJson(response.Content)}");
+                //Console.WriteLine($"\nResponse Body: \n{PrettifyJson(response.Content)}");
             }
             else
             {
