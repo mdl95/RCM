@@ -1,4 +1,4 @@
-name: .NET
+name: RCM API/UI Automation
 
 on:
   push:
@@ -9,6 +9,11 @@ on:
     inputs:
       environment:
         type: environment
+        options:
+        - DEV
+        - QA
+        - PROD
+        default: DEV
         required: true
 
 jobs:
