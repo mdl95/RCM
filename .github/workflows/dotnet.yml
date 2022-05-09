@@ -5,6 +5,11 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        required: true
 
 jobs:
   build:
@@ -23,3 +28,5 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity quiet
+      env:
+        ENVIRONMENT: ${{ github.event.inputs.environment }}
