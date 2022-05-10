@@ -2,7 +2,7 @@
 using RCM.API.Models.Claims;
 using System.Collections.Generic;
 
-namespace RCM.API.Models.Common
+namespace RCM.API.Models.Claims
 {
     public class ClientError
     {

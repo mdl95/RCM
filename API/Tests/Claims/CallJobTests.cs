@@ -1,4 +1,4 @@
-﻿using Automation.API.Models.Jobs;
+﻿using Automation.API.Models.Calls;
 using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.Calls;

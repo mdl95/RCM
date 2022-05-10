@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Automation.API.Models.Jobs
+namespace Automation.API.Models.Calls
 {
     public class Input
     {

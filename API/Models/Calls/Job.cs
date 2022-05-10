@@ -1,4 +1,4 @@
-﻿using Automation.API.Models.Jobs;
+﻿using Automation.API.Models.Calls;
 using Newtonsoft.Json;
 using RCM.API.Models.Common;
 using System.Collections.Generic;

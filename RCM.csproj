@@ -27,7 +27,6 @@
     <Folder Include="API\Models\Claims\" />
     <Folder Include="API\Models\Common\" />
     <Folder Include="API\Tests\Calls\" />
-    <Folder Include="API\Validators\" />
     <Folder Include="API\Support\" />
     <Folder Include="UI\" />
   </ItemGroup>

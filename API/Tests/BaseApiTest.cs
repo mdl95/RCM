@@ -1,4 +1,4 @@
-﻿using Automation.API.Models.Jobs;
+﻿using Automation.API.Models.Calls;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using RCM.API.Endpoints;
@@ -73,7 +73,6 @@ namespace RCM.API.Tests
                 }
 
                 Console.WriteLine($"    Status Code: {(int)response.StatusCode} - {response.StatusCode}");
-                Console.WriteLine($"    Test Status: {TestContext.CurrentContext.Result}");
                 //Console.WriteLine($"\nResponse Body: \n{PrettifyJson(response.Content)}");
             }
             else
