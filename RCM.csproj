@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="API\ClaimImportFiles\" />
-    <Folder Include="API\Endpoints\" />
     <Folder Include="API\Models\Calls\" />
     <Folder Include="API\Models\Claims\" />
     <Folder Include="API\Models\Common\" />

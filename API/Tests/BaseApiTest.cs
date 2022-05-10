@@ -17,6 +17,7 @@ namespace RCM.API.Tests
     {
         protected RestClient claimsClient;
         protected RestClient callsClient;
+        protected RestClient eventClient;
 
 
         /*
@@ -171,6 +172,7 @@ namespace RCM.API.Tests
         {
             callsClient = new RestClient(Config.CALLS_BASE_URL);
             claimsClient = new RestClient(Config.CLAIMS_BASE_URL);
+            eventClient = new RestClient(Config.EVENTS_BASE_URL);
         }
 
 
