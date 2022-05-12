@@ -13,7 +13,7 @@ namespace RCM.API.Tests.Claims
     public class OaiClaimTests : BaseApiTest
     {
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_AllOaiClaims_200")]
-        public async Task API_Claims_OaiClaim_GET_AllOaiClaims(ResponseStatus status, HttpStatusCode code)
+        public async Task OaiClaim_AllOaiClaims(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetOaiClaimsEndpoint(), Method.Get);
 
@@ -32,7 +32,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase(5, 0, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_AllOaiClaims_LimitAndOffset_200")]
-        public async Task API_Claims_OaiClaim_GET_AllOaiClaims_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code) 
+        public async Task OaiClaim_AllOaiClaims_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code) 
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetOaiClaims_LimitAndOffset_Endpoint(limit, offset), Method.Get);
 
@@ -54,7 +54,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("insurerName", "=", "InsName-BYB", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_AllOaiClaims_Filter_200")]
-        public async Task API_Claims_OaiClaim_GET_AllOaiClaims_Filter(string path, string op, string value, ResponseStatus status, HttpStatusCode code) 
+        public async Task OaiClaim_AllOaiClaims_Filter(string path, string op, string value, ResponseStatus status, HttpStatusCode code) 
         {
             var filter = SetFilter(path, op, value);
 
@@ -80,7 +80,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("created", false, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_AllOaiClaims_Sort_200")]
-        public async Task API_Claims_OaiClaim_GET_AllOaiClaims_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code) 
+        public async Task OaiClaim_AllOaiClaims_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code) 
         {
             var sort = SetSort(path, descending);
 
@@ -109,7 +109,7 @@ namespace RCM.API.Tests.Claims
         [TestCase("00160a72-9b4f-4a4f-a6f4-87394fd93dd8", "854fe1df-68b6-48c5-8060-8b5f6c355b99", "pending", 
             "23e90309-70d8-4415-9924-5b69fdd1c029", "Riley Nkosi", "945e284b-12cd-4774-93e5-7c3352094555", 
             "OK: phone with garbage", TestName = "API_Claims_OaiClaim_PATCH_200")]
-        public async Task API_Claims_OaiClaim_PATCH(string oaiClaimId, string entityId, string entityValue, string actorId, string actorName, string activityId, string remarks)
+        public async Task OaiClaim_PATCH(string oaiClaimId, string entityId, string entityValue, string actorId, string actorName, string activityId, string remarks)
         {
             if (entityId.Equals(String.Empty))
             {
@@ -161,7 +161,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_200")]
-        public async Task API_Claims_OaiClaim_GET(string oaiClaimId, ResponseStatus status, HttpStatusCode code)
+        public async Task OaiClaim_GET(string oaiClaimId, ResponseStatus status, HttpStatusCode code)
         {
             if (oaiClaimId.Equals(String.Empty))
             {
@@ -185,7 +185,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_CountStatus_200")]
-        public async Task API_Claims_OaiClaim_GET_CountStatus(ResponseStatus status, HttpStatusCode code)
+        public async Task OaiClaim_CountStatus(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetOaiClaim_CountStatus_Endpoint(), Method.Get);
 
@@ -204,7 +204,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase(5, 0, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_CountStatus_LimitAndOffset_200")]
-        public async Task API_Claims_OaiClaim_GET_CountStatus_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code) 
+        public async Task OaiClaim_CountStatus_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code) 
         {
             int totalCount = 0;
 
@@ -231,7 +231,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("insurerName", "=", "InsName-BYB", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_CountStatus_Filter_200")]
-        public async Task API_Claims_OaiClaim_GET_CountStatus_Filter(string path, string op, string value, ResponseStatus status, HttpStatusCode code) 
+        public async Task OaiClaim_CountStatus_Filter(string path, string op, string value, ResponseStatus status, HttpStatusCode code) 
         {
             var filter = SetFilter(path, op, value);
 
@@ -252,7 +252,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("count", false, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_CountStatus_Sort_200")]
-        public async Task API_Claims_OaiClaim_GET_CountStatus_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code) 
+        public async Task OaiClaim_CountStatus_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code) 
         {
             var sort = SetSort(path, descending);
             int totalCount = 0;
@@ -285,7 +285,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("InsurerName", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_UniqueFieldCount_200")]
-        public async Task API_Claims_OaiClaim_GET_UniqueFieldCount(string field, ResponseStatus status, HttpStatusCode code)
+        public async Task OaiClaim_UniqueFieldCount(string field, ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetOaiClaim_UniqueFieldCount_Endpoint(field), Method.Get);
 
@@ -304,7 +304,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase(5, 0, "InsurerName", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_UniqueFieldCount_LimitAndOffset_200")]
-        public async Task API_Claims_OaiClaim_GET_UniqueFieldCount_LimitAndOffset(int limit, long offset, string field, ResponseStatus status, HttpStatusCode code) 
+        public async Task OaiClaim_UniqueFieldCount_LimitAndOffset(int limit, long offset, string field, ResponseStatus status, HttpStatusCode code) 
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetOaiClaim_UniqueFieldCount_LimitAndOffset_Endpoint(field, limit, offset), Method.Get);
 
@@ -325,7 +325,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("group", "=", "owner", "patientId", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_UniqueFieldCount_Filter_200")]
-        public async Task API_Claims_OaiClaim_GET_UniqueFieldCount_Filter(string path, string op, string value, string field, ResponseStatus status, HttpStatusCode code) 
+        public async Task OaiClaim_UniqueFieldCount_Filter(string path, string op, string value, string field, ResponseStatus status, HttpStatusCode code) 
         {
             var filter = SetFilter(path, op, value);
 
@@ -345,7 +345,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("count", true, "patientId", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_UniqueFieldCount_Sort_200")]
-        public async Task API_Claims_OaiClaim_GET_UniqueFieldCount_Sort(string path, bool descending, string field, ResponseStatus status, HttpStatusCode code) 
+        public async Task OaiClaim_UniqueFieldCount_Sort(string path, bool descending, string field, ResponseStatus status, HttpStatusCode code) 
         {
             var sort = SetSort(path, descending);
 

@@ -12,7 +12,7 @@ namespace RCM.API.Tests.Calls
     {
         [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Calls_CallStatusCallbacks_POST_200")]
         [TestCase("badJobID12345", ResponseStatus.Error, HttpStatusCode.BadRequest, TestName = "API_Calls_CallStatusCallbacks_POST_BadJobID_400")]
-        public async Task API_Calls_CallStatusCallbacks_POST(string callJobId, ResponseStatus status, HttpStatusCode code)
+        public async Task CallStatusCallbacks(string callJobId, ResponseStatus status, HttpStatusCode code)
         {
             if (callJobId.Equals(String.Empty))
             {
@@ -59,13 +59,13 @@ namespace RCM.API.Tests.Calls
 
 
         [TestCase(TestName = "API_Calls_CallStatusCallbacks_ConversationId_POST_200"), Ignore("Implement")]
-        public async Task API_Calls_CallStatusCallbacks_ConversationId_POST()
+        public async Task CallStatusCallbacks_ConversationId()
         {
         }
 
 
         [TestCase(TestName = "API_Calls_CallStatusCallbacks_ParticipantId_POST_200"), Ignore("Implement")]
-        public async Task API_Calls_CallStatusCallbacks_ParticipantId_POST()
+        public async Task CallStatusCallbacks_ParticipantId()
         {
         }
     }

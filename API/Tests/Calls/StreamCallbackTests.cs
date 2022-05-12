@@ -11,7 +11,7 @@ namespace RCM.API.Tests.Calls
     public class StreamCallbackTests : BaseApiTest
     {
         [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Calls_StreamCallback_GET_200")]
-        public async Task API_Calls_StreamCallback_GET(string callJobId, ResponseStatus status, HttpStatusCode code)
+        public async Task StreamCallback(string callJobId, ResponseStatus status, HttpStatusCode code)
         {
             if (callJobId.Equals(String.Empty))
             {

@@ -11,7 +11,7 @@ namespace RCM.API.Tests.Claims
     public class EntityBagTests : BaseApiTest
     {
         [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_EntityBagClaimHistory_GET_200"), Order(0)]
-        public async Task API_Claims_EntityBagClaimHistory_GET(string oaiClaimId, ResponseStatus status, HttpStatusCode code)
+        public async Task EntityBagClaimHistory(string oaiClaimId, ResponseStatus status, HttpStatusCode code)
         {
             if (oaiClaimId.Equals(String.Empty))
             {
@@ -36,7 +36,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_EntityBag_GET_AllEntityBags_200")]
-        public async Task API_Claims_EntityBag_GET_AllEntityBags(ResponseStatus status, HttpStatusCode code)
+        public async Task EntityBag_AllEntityBags(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetEntityBagsEndpoint(), Method.Get);
 
@@ -55,7 +55,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase(5, 0, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_EntityBag_GET_AllEntityBags_LimitAndOffset_200")]
-        public async Task API_Claims_EntityBag_GET_AllEntityBags_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code)
+        public async Task EntityBag_AllEntityBags_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetEntityBags_LimitAndOffset_Endpoint(limit, offset), Method.Get);
 
@@ -77,7 +77,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("entityBagId", "=", "25b1c09a-ea7a-4b6c-bbe6-8d15d7d19998", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_EntityBag_GET_AllEntityBags_Filter_200")]
-        public async Task API_Claims_EntityBag_GET_AllEntityBags_Filter(string path, string op, string value, ResponseStatus status, HttpStatusCode code)
+        public async Task EntityBag_AllEntityBags_Filter(string path, string op, string value, ResponseStatus status, HttpStatusCode code)
         {
             var filter = SetFilter(path, op, value);
 
@@ -99,7 +99,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("entityBagId", false, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_EntityBag_GET_AllEntityBags_Sort_200")]
-        public async Task API_Claims_EntityBag_GET_AllEntityBags_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code)
+        public async Task EntityBag_AllEntityBags_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code)
         {
             var sort = SetSort(path, descending);
 
@@ -126,7 +126,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_EntityBag_GET_200")]
-        public async Task API_Claims_EntityBag_GET(string entityBagId, ResponseStatus status, HttpStatusCode code)
+        public async Task EntityBag(string entityBagId, ResponseStatus status, HttpStatusCode code)
         {
             if (entityBagId.Equals(String.Empty))
             {
@@ -155,7 +155,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_ClaimEntityBag_GET_AllClaimEntityBags_200")]
-        public async Task API_Claims_ClaimEntityBag_GET_AllClaimEntityBags(string oaiClaimId, ResponseStatus status, HttpStatusCode code)
+        public async Task ClaimEntityBag_AllClaimEntityBags(string oaiClaimId, ResponseStatus status, HttpStatusCode code)
         {
             if (oaiClaimId.Equals(String.Empty))
             {
@@ -184,7 +184,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("", 5, 0, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_ClaimEntityBag_GET_AllClaimEntityBags_LimitAndOffset_200")]
-        public async Task API_Claims_ClaimEntityBag_GET_AllClaimEntityBags_LimitAndOffset(string oaiClaimId, int limit, long offset, ResponseStatus status, HttpStatusCode code)
+        public async Task ClaimEntityBag_AllClaimEntityBags_LimitAndOffset(string oaiClaimId, int limit, long offset, ResponseStatus status, HttpStatusCode code)
         {
             if (oaiClaimId.Equals(String.Empty))
             {
@@ -212,7 +212,7 @@ namespace RCM.API.Tests.Claims
 
         [TestCase("", "entityBagId", "=", "25b1c09a-ea7a-4b6c-bbe6-8d15d7d19998", ResponseStatus.Completed, HttpStatusCode.OK,
             TestName = "API_Claims_ClaimEntityBag_GET_AllClaimEntityBags_Filter_200")]
-        public async Task API_Claims_ClaimEntityBag_GET_AllClaimEntityBags_Filter(string oaiClaimId, string path, string op, string value, ResponseStatus status, HttpStatusCode code)
+        public async Task ClaimEntityBag_AllClaimEntityBags_Filter(string oaiClaimId, string path, string op, string value, ResponseStatus status, HttpStatusCode code)
         {
             if (oaiClaimId.Equals(String.Empty))
             {
@@ -239,7 +239,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("", "created", true, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_ClaimEntityBag_GET_AllClaimEntityBags_Sort_200")]
-        public async Task API_Claims_ClaimEntityBag_GET_AllClaimEntityBags_Sort(string oaiClaimId, string path, bool descending, ResponseStatus status, HttpStatusCode code)
+        public async Task ClaimEntityBag_AllClaimEntityBags_Sort(string oaiClaimId, string path, bool descending, ResponseStatus status, HttpStatusCode code)
         {
             if (oaiClaimId.Equals(String.Empty))
             {

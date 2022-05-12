@@ -13,7 +13,7 @@ namespace RCM.API.Tests.Claims
     public class EntityTests : BaseApiTest
     {
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_Entity_GET_AllEntities_200"), Order(0)]
-        public async Task API_Claims_Entity_GET_AllEntities(ResponseStatus status, HttpStatusCode code)
+        public async Task Entity_AllEntities(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetEntitiesEndpoint(), Method.Get);
 
@@ -33,7 +33,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase(5, 0, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_Entity_GET_AllEntities_LimitAndOffset_200")]
-        public async Task API_Claims_Entity_GET_AllEntities_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code) 
+        public async Task Entity_AllEntities_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code) 
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetEntities_LimitAndOffset_Endpoint(limit, offset), Method.Get);
 
@@ -52,7 +52,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("slot", "=", "auth_id", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_Entity_GET_AllEntities_Filter_200")]
-        public async Task API_Claims_Entity_GET_AllEntities_Filter(string path, string op, string value, ResponseStatus status, HttpStatusCode code) 
+        public async Task Entity_AllEntities_Filter(string path, string op, string value, ResponseStatus status, HttpStatusCode code) 
         {
             var filter = SetFilter(path, op, value);
 
@@ -74,7 +74,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("slot", true, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_Entity_GET_AllEntities_Sort_200")]
-        public async Task API_Claims_Entity_GET_AllEntities_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code) 
+        public async Task Entity_AllEntities_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code) 
         {
             var sort = SetSort(path, descending);
 
@@ -98,8 +98,8 @@ namespace RCM.API.Tests.Claims
         }
 
 
-        [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_Entity_GET_200")]
-        public async Task API_Claims_Entity_GET(string entityId, ResponseStatus status, HttpStatusCode code)
+        [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Entity_GET_200")]
+        public async Task Entity(string entityId, ResponseStatus status, HttpStatusCode code)
         {
             if (entityId.Equals(String.Empty))
             {

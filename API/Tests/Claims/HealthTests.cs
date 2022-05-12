@@ -10,7 +10,7 @@ namespace RCM.API.Tests.Claims
     public class HealthTests : BaseApiTest
     {
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_Health_GET_200")]
-        public async Task API_Claims_Health_GET(ResponseStatus status, HttpStatusCode code)
+        public async Task Health(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(CommonEndpoints.GetHealthEndpoint(), Method.Get);
 

@@ -16,7 +16,7 @@ namespace RCM.API.Tests.Claims
         [TestCase(false, "Random-BadDate.csv", ResponseStatus.Error, HttpStatusCode.BadRequest, TestName = "API_Claims_CsvImport_POST_BadDate_400")]
         [TestCase(false, "Random-4Rows-2Malformed.csv", ResponseStatus.Error, HttpStatusCode.BadRequest, TestName = "API_Claims_CsvImport_POST_Malformed_400")]
         [TestCase(false, "Random-5Rows-3BadField.csv", ResponseStatus.Error, HttpStatusCode.BadRequest, TestName = "API_Claims_CsvImport_POST_BadField_400")]
-        public async Task API_Claims_CsvImport_POST(bool startUnattendedCalls, string csvFile, ResponseStatus status, HttpStatusCode code)
+        public async Task CsvImport(bool startUnattendedCalls, string csvFile, ResponseStatus status, HttpStatusCode code)
         {
             string path = $"{GetSolutionDirectory()}\\API\\ClaimImportFiles\\{csvFile}";
 
@@ -43,7 +43,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CsvImport_GET_AllImports_200")]
-        public async Task API_Claims_CsvImport_GET_AllImports(ResponseStatus status, HttpStatusCode code)
+        public async Task CsvImport_AllImports(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetCsvImportsEndpoint(), Method.Get);
 
@@ -62,7 +62,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase(5, 0, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CsvImport_GET_AllImports_LimitAndOffset_200")]
-        public async Task API_Claims_CsvImport_GET_AllImports_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code) 
+        public async Task CsvImport_AllImports_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code) 
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetCsvImports_LimitAndOffset_Endpoint(limit, offset), Method.Get);
 
@@ -84,7 +84,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("id", "=", "", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CsvImport_GET_AllImports_Filter_200")]
-        public async Task API_Claims_CsvImport_GET_AllImports_Filter(string path, string op, string value, ResponseStatus status, HttpStatusCode code) 
+        public async Task CsvImport_AllImports_Filter(string path, string op, string value, ResponseStatus status, HttpStatusCode code) 
         {
             if (value.Equals(String.Empty))
             {
@@ -116,7 +116,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("created", false, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CsvImport_GET_AllImports_Sort_200")]
-        public async Task API_Claims_CsvImport_GET_AllImports_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code) 
+        public async Task CsvImport_AllImports_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code) 
         {
             var sort = SetSort(path, descending);
 
@@ -143,7 +143,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CsvImport_GET_200")]
-        public async Task API_Claims_CsvImport_GET(ResponseStatus status, HttpStatusCode code)
+        public async Task CsvImport(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetCsvImportEndpoint(csvImportId), Method.Get);
 

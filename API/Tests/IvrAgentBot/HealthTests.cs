@@ -5,16 +5,16 @@ using RestSharp;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace RCM.API.Tests.CallTranscriptEvent
+namespace RCM.API.Tests.IvrAgentBot
 {
     public class HealthTests : BaseApiTest
     {
-        [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_CallTranscriptEvent_Health_GET_200")]
+        [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_IvrAgentBot_Health_GET_200")]
         public async Task Health(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(CommonEndpoints.GetHealthEndpoint(), Method.Get);
 
-            RestResponse<Health> response = await eventClient.ExecuteAsync<Health>(request);
+            RestResponse<Health> response = await claimsClient.ExecuteAsync<Health>(request);
 
             Health health = response.Data;
 

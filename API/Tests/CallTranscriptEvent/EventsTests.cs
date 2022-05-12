@@ -10,7 +10,7 @@ namespace RCM.API.Tests.CallTranscriptEvent
     public class EventsTests : BaseApiTest
     {
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_CallTranscriptEvent_Events_GET_200")]
-        public async Task API_CallTranscriptEvent_GET(ResponseStatus status, HttpStatusCode code)
+        public async Task Events(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(EventsEndpoints.GetEventsEndpoint(), Method.Get);
 

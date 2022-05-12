@@ -11,7 +11,7 @@ namespace RCM.API.Tests.Claims
     public class CsvClaimsTests : BaseApiTest
     {
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CsvClaim_GET_AllClaims_200"), Order(0)]
-        public async Task API_Claims_CsvClaim_GET_AllClaims(ResponseStatus status, HttpStatusCode code)
+        public async Task CsvClaim_AllClaims(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetCsvClaimEndpoint(), Method.Get);
 
@@ -30,7 +30,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase(5, 0, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CsvClaim_GET_AllClaims_LimitAndOffset_200")]
-        public async Task API_Claims_CsvClaim_GET_AllClaims_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code) 
+        public async Task CsvClaim_AllClaims_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code) 
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetCsvClaim_LimitAndOffset_Endpoint(limit, offset), Method.Get);
 
@@ -52,7 +52,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("patientId", "=", "YR.426968Y", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CsvClaim_GET_AllClaims_Filter_200")]
-        public async Task API_Claims_CsvClaim_GET_AllClaims_Filter(string path, string op, string value, ResponseStatus status, HttpStatusCode code) 
+        public async Task CsvClaim_AllClaims_Filter(string path, string op, string value, ResponseStatus status, HttpStatusCode code) 
         {
             var filter = SetFilter(path, op, value);
 
@@ -78,7 +78,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("claimSubmissionDate", true, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CsvClaim_GET_AllClaims_Sort_200")]
-        public async Task API_Claims_CsvClaim_GET_AllClaims_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code) 
+        public async Task CsvClaim_AllClaims_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code) 
         {
             var sort = SetSort(path, descending);
 
@@ -105,7 +105,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CsvClaim_GET_200")]
-        public async Task API_Claims_CsvClaim_GET(string csvClaimId, ResponseStatus status, HttpStatusCode code)
+        public async Task CsvClaim(string csvClaimId, ResponseStatus status, HttpStatusCode code)
         {
             if (csvClaimId.Equals(String.Empty))
             {

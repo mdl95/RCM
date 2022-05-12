@@ -17,8 +17,8 @@ namespace RCM.API.Tests.Calls
         }
 
 
-        [Test]
-        public async Task API_Calls_Twiml_GET_200()
+        [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Calls_Twiml_GET_200")]
+        public async Task Calls_Twiml(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(CallsEndpoints.GetTwimlEndpoint(jobId), Method.Get);
 
@@ -30,18 +30,18 @@ namespace RCM.API.Tests.Calls
 
             Assert.Multiple(() =>
             {
-                Assert.That(response.ResponseStatus, Is.EqualTo(ResponseStatus.Completed));
-                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+                Assert.That(response.ResponseStatus, Is.EqualTo(status));
+                Assert.That(response.StatusCode, Is.EqualTo(code));
             });
         }
 
-        [Test, Ignore("Implement")]
-        public async Task API_Calls_CallStatusCallbacks_ConversationId_POST_200()
+        [TestCase(TestName = "API_Calls_Twiml_ConversationId_POST_200"), Ignore("Implement")]
+        public async Task Twiml_ConversationId()
         {
         }
 
-        [Test, Ignore("Implement")]
-        public async Task API_Calls_CallStatusCallbacks_ParticipantId_POST_200()
+        [TestCase(TestName = "API_Calls_Twiml_ParticipantId_POST_200"), Ignore("Implement")]
+        public async Task Twiml_ParticipantId()
         {
         }
     }

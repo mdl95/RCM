@@ -11,7 +11,7 @@ namespace RCM.API.Tests.Calls
     public class StreamStatusCallbackTests : BaseApiTest
     {
         [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Calls_StreamStatusCallback_POST_200")]
-        public async Task API_Calls_StreamStatusCallback_POST(string callJobId, ResponseStatus status, HttpStatusCode code)
+        public async Task StreamStatusCallback(string callJobId, ResponseStatus status, HttpStatusCode code)
         {
             if (callJobId.Equals(String.Empty))
             {
@@ -46,12 +46,12 @@ namespace RCM.API.Tests.Calls
         }
 
         [TestCase(TestName = "API_Calls_CallStatusCallbacks_ConversationId_POST_200"), Ignore("Implement")]
-        public async Task API_Calls_CallStatusCallbacks_ConversationId_POST()
+        public async Task CallStatusCallbacks_ConversationId()
         {
         }
 
         [TestCase(TestName = "API_Calls_CallStatusCallbacks_ParticipantId_POST_200"), Ignore("Implement")]
-        public async Task API_Calls_CallStatusCallbacks_ParticipantId_POST()
+        public async Task CallStatusCallbacks_ParticipantId()
         {
         }
     }

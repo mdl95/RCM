@@ -13,7 +13,7 @@ namespace RCM.API.Tests.Claims
     public class CallJobTests : BaseApiTest
     {
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_200"), Order(0)]
-        public async Task API_Claims_CallJob_GET_AllCallJobs(ResponseStatus status, HttpStatusCode code)
+        public async Task CallJob_AllCallJobs(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetCallJobsEndpoint(), Method.Get);
 
@@ -33,7 +33,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase(5, 0, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_LimitAndOffset_200")]
-        public async Task API_Claims_CallJob_GET_AllCallJobs_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code)
+        public async Task CallJob_AllCallJobs_LimitAndOffset(int limit, long offset, ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(ClaimsEndpoints.GetCallJobs_LimitAndOffset_Endpoint(limit, offset), Method.Get);
 
@@ -55,7 +55,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("status", "=", 2, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_Filter_200")]
-        public async Task API_Claims_CallJob_GET_AllCallJobs_Filter(string path, string op, int value, ResponseStatus status, HttpStatusCode code)
+        public async Task CallJob_AllCallJobs_Filter(string path, string op, int value, ResponseStatus status, HttpStatusCode code)
         {
             var filter = SetFilter(path, op, value);
 
@@ -82,7 +82,7 @@ namespace RCM.API.Tests.Claims
 
         [TestCase("jobId", true, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_Sort_200")]
         [TestCase("jobId", false, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_Sort_200")]
-        public async Task API_Claims_CallJob_GET_AllCallJobs_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code)
+        public async Task CallJob_AllCallJobs_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code)
         {
             var sort = SetSort(path, descending);
 
@@ -115,7 +115,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_200"), Order(10)]
-        public async Task API_Claims_CallJob_GET(string callJobId, ResponseStatus status, HttpStatusCode code)
+        public async Task CallJob_GET(string callJobId, ResponseStatus status, HttpStatusCode code)
         {
             if (callJobId.Equals(String.Empty))
             {
@@ -140,7 +140,7 @@ namespace RCM.API.Tests.Claims
 
 
         [TestCase("", "API_Claims_CallJob_Patch_200 test notes...", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_PATCH_200")]
-        public async Task API_Claims_CallJob_PATCH(string callJobId, string notes, ResponseStatus status, HttpStatusCode code)
+        public async Task CallJob_PATCH(string callJobId, string notes, ResponseStatus status, HttpStatusCode code)
         {
             if (callJobId.Equals(String.Empty))
             {
@@ -154,7 +154,7 @@ namespace RCM.API.Tests.Claims
             };
 
             RestRequest request = new RestRequest(ClaimsEndpoints.GetCallJobsEndpoint(), Method.Patch)
-                .AddBody(payload);
+                .AddJsonBody(payload);
 
             RestResponse<CallJobData> response = await claimsClient.ExecuteAsync<CallJobData>(request);
 
@@ -172,7 +172,7 @@ namespace RCM.API.Tests.Claims
 
         [TestCase("", "2000-01-01T00:00:00.000Z", "2000-01-01T00:00:00.000Z", "AutoCallJob123", "123-45-6789", "Mock", 
             "+16788843304", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_PUT_200")]
-        public async Task API_Claims_CallJob_PUT(string oaiClaimId, string claimDateOfService, string patientDateOfBirth, 
+        public async Task CallJob_PUT(string oaiClaimId, string claimDateOfService, string patientDateOfBirth, 
             string patientMemberId, string callInfoTaxId, string type, string phoneNumber, ResponseStatus status, HttpStatusCode code)
         {
             if (oaiClaimId.Equals(String.Empty))
@@ -196,7 +196,7 @@ namespace RCM.API.Tests.Claims
             };
 
             RestRequest request = new RestRequest(ClaimsEndpoints.GetOaiClaimCallJobEndpoint(this.oaiClaimId), Method.Put)
-                .AddBody(payload);
+                .AddJsonBody(payload);
 
             RestResponse<CallJobData> response = await claimsClient.ExecuteAsync<CallJobData>(request);
 
@@ -216,7 +216,7 @@ namespace RCM.API.Tests.Claims
         [TestCase("2000-01-01T00:00:00.000Z", "2000-01-01T00:00:00.000Z", "AutoCallJob123", "123-45-6789",
             "02907772-b188-47ff-8056-007deb609274", "Mock", "Complete", "+16788843304", 
             ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_Status_PUT_200")]
-        public async Task API_Claims_CallJob_Status_PUT(string claimDateOfService, string patientDateOfBirth, string patientMemberId, 
+        public async Task CallJob_Status(string claimDateOfService, string patientDateOfBirth, string patientMemberId, 
             string callInfoTaxId, string id, string type, string status, string phoneNumber, ResponseStatus responseStatus, HttpStatusCode code)
         {
             Input inputs = new Input
@@ -237,7 +237,7 @@ namespace RCM.API.Tests.Claims
             };
 
             RestRequest request = new RestRequest(ClaimsEndpoints.GetWebhookCallJobEndpoint(), Method.Put)
-                .AddBody(payload);
+                .AddJsonBody(payload);
 
             RestResponse<CallJob> response = await claimsClient.ExecuteAsync<CallJob>(request);
 

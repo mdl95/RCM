@@ -11,7 +11,7 @@ namespace RCM.API.Tests.Calls
     public class RecordingStatusCallbacksTests : BaseApiTest
     {
         [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Calls_RecordingStatusCallbacks_200")]
-        public async Task API_Calls_RecordingStatusCallbacks(string callJobId, ResponseStatus status, HttpStatusCode code)
+        public async Task RecordingStatusCallbacks(string callJobId, ResponseStatus status, HttpStatusCode code)
         {
             if (callJobId.Equals(String.Empty))
             {
@@ -43,20 +43,20 @@ namespace RCM.API.Tests.Calls
 
             Assert.Multiple(() =>
             {
-                Assert.That(response.ResponseStatus, Is.EqualTo(ResponseStatus.Completed));
-                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+                Assert.That(response.ResponseStatus, Is.EqualTo(status));
+                Assert.That(response.StatusCode, Is.EqualTo(code));
             });
         }
 
 
         [TestCase(TestName = "API_Calls_RecordingStatusCallbacks_ConversationId_POST_200"), Ignore("Implement")]
-        public async Task API_Calls_RecordingStatusCallbacks_ConversationId_POST()
+        public async Task RecordingStatusCallbacks_ConversationId()
         {
         }
 
 
         [TestCase(TestName = "API_Calls_RecordingStatusCallbacks_ParticipantId_POST_200"), Ignore("Implement")]
-        public async Task API_Calls_RecordingStatusCallbacks_ParticipantId_POST()
+        public async Task RecordingStatusCallbacks_ParticipantId()
         {
         }
     }
