@@ -22,12 +22,6 @@ namespace RCM.API.Endpoints
             $"{Config.BASE_URN}/jobs/{jobId}/callStatus?participantId={participantId}";
 
 
-        // Health
-
-        public static string GetHealthEndpoint() => 
-            $"{Config.BASE_URN}/health";
-
-
         // Jobs
 
         public static string GetJobsEndpoint() => 

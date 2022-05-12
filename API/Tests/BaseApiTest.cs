@@ -170,9 +170,9 @@ namespace RCM.API.Tests
 
         private void SetupClients()
         {
-            callsClient = new RestClient(Config.CALLS_BASE_URL);
-            claimsClient = new RestClient(Config.CLAIMS_BASE_URL);
-            eventClient = new RestClient(Config.EVENTS_BASE_URL);
+            callsClient = new RestClient(Config.CALLS_BASE_URL_DEV);
+            claimsClient = new RestClient(Config.CLAIMS_BASE_URL_DEV);
+            eventClient = new RestClient(Config.EVENTS_BASE_URL_DEV);
         }
 
 

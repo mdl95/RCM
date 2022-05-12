@@ -121,12 +121,6 @@ namespace RCM.API.Endpoints
             $"{Config.BASE_URN}/entitybag/claimhistory/{oaiClaimId}";
  
 
-        // Health
-
-        public static string GetHealthEndpoint() => 
-            $"{Config.BASE_URN}​​/health";
-
-
         // OaiClaim
 
         public static string GetOaiClaimsEndpoint() => 

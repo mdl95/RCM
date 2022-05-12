@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using RCM.API.Endpoints;
-using RCM.API.Models.Events;
+using RCM.API.Models.CallTranscriptEvent;
 using RestSharp;
 using System.Net;
 using System.Threading.Tasks;

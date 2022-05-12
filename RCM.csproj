@@ -27,6 +27,7 @@
     <Folder Include="API\Models\Common\" />
     <Folder Include="API\Tests\Calls\" />
     <Folder Include="API\Support\" />
+    <Folder Include="API\Tests\IvrAgentBot\" />
     <Folder Include="UI\" />
   </ItemGroup>
 

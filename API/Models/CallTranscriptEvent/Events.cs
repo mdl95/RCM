@@ -1,4 +1,4 @@
-﻿namespace RCM.API.Models.Events
+﻿namespace RCM.API.Models.CallTranscriptEvent
 {
     // Events
 
