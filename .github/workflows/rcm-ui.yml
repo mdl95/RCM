@@ -11,7 +11,7 @@ on:
         type: choice
         options:
         - DEV
-        - QA
+        - STAGING
         - PROD
         default: DEV
         required: true
