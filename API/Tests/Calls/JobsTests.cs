@@ -48,9 +48,9 @@ namespace RCM.API.Tests.Calls
             Input inputs = new Input
             {
                 Claim_ClaimDateOfService = "2000-01-01T00:00:00.000Z",
-                Patient_DateOfBirth = "2000-01-01T00:00:00.000Z",
-                Patient_MemberId = "AutoCalls123",
-                CallInformation_TaxId = "123-45-6789"
+                PatientDateOfBirth = "2000-01-01T00:00:00.000Z",
+                PatientMemberId = "AutoCalls123",
+                CallInformationTaxId = "123-45-6789"
             };
 
             Job payload = new Job
@@ -112,9 +112,9 @@ namespace RCM.API.Tests.Calls
             Input inputs = new Input
             {
                 Claim_ClaimDateOfService = "2022-01-01T00:00:00.000Z",
-                Patient_DateOfBirth = "1950-01-01T00:00:00.000Z",
-                Patient_MemberId = "UpdatedAutoCalls123",
-                CallInformation_TaxId = "123-45-6789"
+                PatientDateOfBirth = "1950-01-01T00:00:00.000Z",
+                PatientMemberId = "UpdatedAutoCalls123",
+                CallInformationTaxId = "123-45-6789"
             };
 
             Job payload = new Job

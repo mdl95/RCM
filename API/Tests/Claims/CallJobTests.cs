@@ -183,9 +183,9 @@ namespace RCM.API.Tests.Claims
             Input inputs = new Input
             {
                 Claim_ClaimDateOfService = claimDateOfService,
-                Patient_DateOfBirth = patientDateOfBirth,
-                Patient_MemberId = patientMemberId,
-                CallInformation_TaxId = callInfoTaxId
+                PatientDateOfBirth = patientDateOfBirth,
+                PatientMemberId = patientMemberId,
+                CallInformationTaxId = callInfoTaxId
             };
 
             Job payload = new Job
@@ -222,9 +222,9 @@ namespace RCM.API.Tests.Claims
             Input inputs = new Input
             {
                 Claim_ClaimDateOfService = claimDateOfService,
-                Patient_DateOfBirth = patientDateOfBirth,
-                Patient_MemberId = patientMemberId,
-                CallInformation_TaxId = callInfoTaxId
+                PatientDateOfBirth = patientDateOfBirth,
+                PatientMemberId = patientMemberId,
+                CallInformationTaxId = callInfoTaxId
             };
 
             Job payload = new Job

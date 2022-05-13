@@ -15,9 +15,12 @@ namespace RCM.API.Tests
 {
     public abstract class BaseApiTest
     {
+        // Be sure to initialize the client in SetupClients()
+
         protected RestClient claimsClient;
         protected RestClient callsClient;
         protected RestClient eventClient;
+        protected RestClient agentClient;
 
 
         /*
@@ -89,9 +92,9 @@ namespace RCM.API.Tests
             Input inputs = new Input
             {
                 Claim_ClaimDateOfService = "2000-01-01T00:00:00.000Z",
-                Patient_DateOfBirth = "2000-01-01T00:00:00.000Z",
-                Patient_MemberId = "AutoCalls123",
-                CallInformation_TaxId = "123-45-6789"
+                PatientDateOfBirth = "2000-01-01T00:00:00.000Z",
+                PatientMemberId = "AutoCalls123",
+                CallInformationTaxId = "123-45-6789"
             };
 
             Job job = new Job
@@ -173,6 +176,7 @@ namespace RCM.API.Tests
             callsClient = new RestClient(Config.CALLS_BASE_URL_DEV);
             claimsClient = new RestClient(Config.CLAIMS_BASE_URL_DEV);
             eventClient = new RestClient(Config.EVENTS_BASE_URL_DEV);
+            agentClient = new RestClient(Config.IVR_AGENT_BOT_URL_DEV);
         }
 
 

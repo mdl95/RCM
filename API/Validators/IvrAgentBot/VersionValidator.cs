@@ -3,9 +3,9 @@ using RCM.API.Models.IvrAgentBot;
 
 namespace RCM.API.Validators.IvrAgentBot
 {
-    public class VersionModelValidator : AbstractValidator<VersionModel>
+    public class VersionValidator : AbstractValidator<VersionModel>
     {
-        public VersionModelValidator()
+        public VersionValidator()
         {
 
         }

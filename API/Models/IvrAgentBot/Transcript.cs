@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Automation.API.Models.Calls;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace RCM.API.Models.IvrAgentBot
@@ -7,6 +8,12 @@ namespace RCM.API.Models.IvrAgentBot
     {
         [JsonProperty("conversationID")]
         public string ConversationID { get; set; }
+
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        [JsonProperty("metadata")]
+        public Input Metadata { get; set; }
 
         [JsonProperty("request")]
         public string Request { get; set; }
