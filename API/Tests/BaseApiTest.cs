@@ -21,6 +21,7 @@ namespace RCM.API.Tests
         protected RestClient callsClient;
         protected RestClient eventClient;
         protected RestClient agentClient;
+        protected RestClient extractClient;
 
 
         /*
@@ -177,6 +178,7 @@ namespace RCM.API.Tests
             claimsClient = new RestClient(Config.CLAIMS_BASE_URL_DEV);
             eventClient = new RestClient(Config.EVENTS_BASE_URL_DEV);
             agentClient = new RestClient(Config.IVR_AGENT_BOT_URL_DEV);
+            extractClient = new RestClient(Config.IVR_INFO_EXTRACTOR_URL_DEV);
         }
 
 
