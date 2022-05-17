@@ -22,11 +22,9 @@
 
   <ItemGroup>
     <Folder Include="API\ClaimImportFiles\" />
-    <Folder Include="API\Models\Calls\" />
     <Folder Include="API\Models\Claims\" />
     <Folder Include="API\Models\Common\" />
     <Folder Include="API\Tests\Calls\" />
-    <Folder Include="API\Support\" />
     <Folder Include="UI\" />
   </ItemGroup>
 

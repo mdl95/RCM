@@ -1,7 +1,9 @@
 ﻿using Automation.API.Models.Calls;
+using FluentValidation.Results;
 using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.Calls;
+using RCM.API.Validators.Calls;
 using RestSharp;
 using System;
 using System.Net;
@@ -18,14 +20,19 @@ namespace RCM.API.Tests.Calls
 
             RestResponse<Job> response = await callsClient.ExecuteAsync<Job>(request);
             
-            Job job = response.Data;
+            Job jobData = response.Data;
 
-            LogResults(response);
+            JobValidator validator = new JobValidator();
+            ValidationResult results = validator.Validate(jobData);
 
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                Assert.That(results.IsValid, Is.True);
+
+                LogResults(response, results);
             });
         }
 
@@ -53,7 +60,7 @@ namespace RCM.API.Tests.Calls
                 CallInformationTaxId = "123-45-6789"
             };
 
-            Job payload = new Job
+            JobData payload = new JobData
             {
                 Type = "Mock",
                 PhoneNumber = "+16788843304",
@@ -117,7 +124,7 @@ namespace RCM.API.Tests.Calls
                 CallInformationTaxId = "123-45-6789"
             };
 
-            Job payload = new Job
+            JobData payload = new JobData
             {
                 Type = "Mock",
                 PhoneNumber = "+16788843304",

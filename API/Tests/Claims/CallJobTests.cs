@@ -188,7 +188,7 @@ namespace RCM.API.Tests.Claims
                 CallInformationTaxId = callInfoTaxId
             };
 
-            Job payload = new Job
+            JobData payload = new JobData
             {
                 Type = type,
                 PhoneNumber = phoneNumber,
@@ -227,7 +227,7 @@ namespace RCM.API.Tests.Claims
                 CallInformationTaxId = callInfoTaxId
             };
 
-            Job payload = new Job
+            JobData payload = new JobData
             {
                 Id = id,
                 Type = type,

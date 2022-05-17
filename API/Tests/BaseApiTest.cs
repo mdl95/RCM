@@ -1,4 +1,5 @@
 ﻿using Automation.API.Models.Calls;
+using FluentValidation.Results;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using RCM.API.Endpoints;
@@ -64,11 +65,10 @@ namespace RCM.API.Tests
         }
 
 
-        protected void LogResults(RestResponse response)
+        protected void LogResults(RestResponse response, ValidationResult results = null)
         {
             if (response != null)
             {
-                Console.WriteLine();
                 Console.WriteLine($"           Test: {TestContext.CurrentContext.Test.Name}");
                 Console.WriteLine($"Response Status: {response.ResponseStatus}");
 
@@ -84,6 +84,16 @@ namespace RCM.API.Tests
             {
                 Console.WriteLine("'response' was NULL");
             }
+
+            if (results is not null && results.Errors.Count != 0)
+            {
+                Console.WriteLine("\nSchema Validation Errors:\n");
+
+                for (int i = 0; i < results.Errors.Count; ++i)
+                {
+                    Console.WriteLine($"{i + 1}) {results.Errors[i]}");
+                }
+            }
         }
 
         protected async Task<string> SetJobIdAsync()
@@ -98,7 +108,7 @@ namespace RCM.API.Tests
                 CallInformationTaxId = "123-45-6789"
             };
 
-            Job job = new Job
+            JobData job = new JobData
             {
                 Type = "Mock",
                 PhoneNumber = "+14045555555",
@@ -108,9 +118,9 @@ namespace RCM.API.Tests
             RestRequest request = new RestRequest(CallsEndpoints.GetJobsEndpoint(), Method.Post);
             request.AddJsonBody(job);
 
-            RestResponse<Job> response = await callsClient.ExecuteAsync<Job>(request);
+            RestResponse<JobData> response = await callsClient.ExecuteAsync<JobData>(request);
 
-            Job jobData = response.Data;
+            JobData jobData = response.Data;
 
             jobId = jobData.Id;
 
