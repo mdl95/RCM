@@ -16,7 +16,7 @@ namespace RCM.API.Tests.IvrInfoExtractor
         {
             RestRequest request = new RestRequest(CommonEndpoints.GetHealthEndpoint(), Method.Get);
 
-            RestResponse<Health> response = await callsClient.ExecuteAsync<Health>(request);
+            RestResponse<Health> response = await extractClient.ExecuteAsync<Health>(request);
 
             Health health = response.Data;
 

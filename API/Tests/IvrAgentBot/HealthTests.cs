@@ -16,7 +16,7 @@ namespace RCM.API.Tests.IvrAgentBot
         {
             RestRequest request = new RestRequest(CommonEndpoints.GetHealthEndpoint(), Method.Get);
 
-            RestResponse<Health> response = await callsClient.ExecuteAsync<Health>(request);
+            RestResponse<Health> response = await agentClient.ExecuteAsync<Health>(request);
 
             Health health = response.Data;
 
