@@ -20,6 +20,11 @@ namespace RCM.API.Support
 			return ruleBuilder.Must(property => property is double).WithMessage("{PropertyName} should be a Double");
 		}
 
+		public static IRuleBuilderOptions<T, TElement> IsFloat<T, TElement>(this IRuleBuilder<T, TElement> ruleBuilder)
+		{
+			return ruleBuilder.Must(property => property is float).WithMessage("{PropertyName} should be a Float");
+		}
+
 		public static IRuleBuilderOptions<T, TElement> IsInteger<T, TElement>(this IRuleBuilder<T, TElement> ruleBuilder)
 		{
 			return ruleBuilder.Must(property => property is int).WithMessage("{PropertyName} should be an Integer");

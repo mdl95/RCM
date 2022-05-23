@@ -11,8 +11,8 @@ namespace RCM.API.Tests.Calls
 {
     public class HealthTests : BaseApiTest
     {
-        [Test]
-        public async Task API_Calls_Health_GET_200()
+        [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Calls_Health_GET_200")]
+        public async Task Health(ResponseStatus status, HttpStatusCode code)
         {
             RestRequest request = new RestRequest(CommonEndpoints.GetHealthEndpoint(), Method.Get);
 
@@ -25,7 +25,8 @@ namespace RCM.API.Tests.Calls
 
             Assert.Multiple(() =>
             {
-                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+                Assert.That(response.ResponseStatus, Is.EqualTo(status));
+                Assert.That(response.StatusCode, Is.EqualTo(code));
                 Assert.That(health.Branch, Is.Not.Null);
                 Assert.That(health.Commit, Is.Not.Null);
 

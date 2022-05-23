@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using RCM.API.Models.IvrAgentBot;
+using RCM.API.Support;
 
 namespace RCM.API.Validators.IvrAgentBot
 {
@@ -7,7 +8,7 @@ namespace RCM.API.Validators.IvrAgentBot
     {
         public VersionValidator()
         {
-
+            RuleFor(version => version.Version).IsString();
         }
     }
 }

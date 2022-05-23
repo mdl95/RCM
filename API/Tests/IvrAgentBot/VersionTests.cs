@@ -1,6 +1,8 @@
-﻿using NUnit.Framework;
+﻿using FluentValidation.Results;
+using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.IvrAgentBot;
+using RCM.API.Validators.IvrAgentBot;
 using RestSharp;
 using System.Net;
 using System.Threading.Tasks;
@@ -18,12 +20,17 @@ namespace RCM.API.Tests.IvrAgentBot
 
             VersionModel version = response.Data;
 
-            LogResults(response);
+            VersionValidator validator = new VersionValidator();
+            ValidationResult results = validator.Validate(version);
 
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(responseStatus));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                Assert.That(results.IsValid, Is.True);
+
+                LogResults(response);
             });
         }
     }
