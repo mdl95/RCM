@@ -1,6 +1,8 @@
-﻿using NUnit.Framework;
+﻿using FluentValidation.Results;
+using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.IvrInfoExtractor;
+using RCM.API.Validators.IvrInfoExtractor;
 using RestSharp;
 using System.Collections.Generic;
 using System.Net;
@@ -36,12 +38,17 @@ namespace RCM.API.Tests.IvrInfoExtractor
 
             TranscriptExtraction transcriptExtraction = response.Data;
 
-            LogResults(response);
+            TranscriptExtractionValidator validator = new TranscriptExtractionValidator();
+            ValidationResult results = validator.Validate(transcriptExtraction);
 
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                Assert.That(results.IsValid, Is.True);
+
+                LogResults(response, results);
             });
         }
     }
