@@ -74,12 +74,12 @@ namespace RCM.API.Tests.Calls
 
             Job jobData = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
 
@@ -98,12 +98,12 @@ namespace RCM.API.Tests.Calls
             
             Job job = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
 
@@ -138,12 +138,12 @@ namespace RCM.API.Tests.Calls
 
             Job jobData = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
     }

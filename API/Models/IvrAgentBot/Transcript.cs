@@ -6,6 +6,8 @@ namespace RCM.API.Models.IvrAgentBot
 {
     public class Transcript
     {
+        // REQUEST
+
         [JsonProperty("conversationID")]
         public string ConversationID { get; set; }
 
@@ -14,6 +16,9 @@ namespace RCM.API.Models.IvrAgentBot
 
         [JsonProperty("metadata")]
         public Input Metadata { get; set; }
+
+
+        // RESPONSE
 
         [JsonProperty("request")]
         public string Request { get; set; }
