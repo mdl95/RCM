@@ -67,7 +67,7 @@ namespace RCM.API.Tests
 
         protected void LogResults(RestResponse response, ValidationResult results = null)
         {
-            if (response != null)
+            if (response is not null)
             {
                 Console.WriteLine($"           Test: {TestContext.CurrentContext.Test.Name}");
                 Console.WriteLine($"Response Status: {response.ResponseStatus}");
@@ -108,15 +108,15 @@ namespace RCM.API.Tests
                 CallInformationTaxId = "123-45-6789"
             };
 
-            JobData job = new JobData
+            JobData payload = new JobData
             {
                 Type = "Mock",
                 PhoneNumber = "+14045555555",
                 Inputs = inputs
             };
 
-            RestRequest request = new RestRequest(CallsEndpoints.GetJobsEndpoint(), Method.Post);
-            request.AddJsonBody(job);
+            RestRequest request = new RestRequest(CallsEndpoints.GetJobsEndpoint(), Method.Post)
+                .AddJsonBody(payload);
 
             RestResponse<JobData> response = await callsClient.ExecuteAsync<JobData>(request);
 

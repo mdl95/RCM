@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using RCM.API.Models.Calls;
 using System;
 
 namespace RCM.API.Support
@@ -38,6 +39,12 @@ namespace RCM.API.Support
 		public static IRuleBuilderOptions<T, TElement> IsString<T, TElement>(this IRuleBuilder<T, TElement> ruleBuilder)
 		{
 			return ruleBuilder.Must(property => property is string).WithMessage("{PropertyName} should be a String");
+		}
+
+
+		public static IRuleBuilderOptions<T, TElement> IsJob<T, TElement>(this IRuleBuilder<T, TElement> ruleBuilder)
+		{
+			return ruleBuilder.Must(property => property is Job).WithMessage("{PropertyName} should be a Job");
 		}
 	}
 }
