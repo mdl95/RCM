@@ -12,7 +12,7 @@ on:
         options:
         - DEV
         - STAGING
-        - PROD1
+        - PROD
         default: DEV
         required: true
 
