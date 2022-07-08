@@ -36,8 +36,8 @@ jobs:
       env:
         ENVIRONMENT: ${{ github.event.inputs.environment }}
         
-    - name: Test marketplace action
-      uses: simple-elf/allure-report-action@master
+    - name: Test action
+      uses: mdl95/RCM@main
       if: always()
       id: allure-report
       with:
