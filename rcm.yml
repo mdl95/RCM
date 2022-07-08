@@ -36,20 +36,8 @@ jobs:
       env:
         ENVIRONMENT: ${{ github.event.inputs.environment }}
         
-    - name: Test action
+    - name: Publish Test Results
       uses: mdl95/RCM@main
       if: always()
-      id: allure-report
       with:
-        allure_results: build/allure-results
-        gh_pages: gh-pages
-        allure_report: allure-report
-        allure_history: allure-history
-
-    - name: Deploy report to Github Pages
-      if: always()
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: allure-history
+        files: "test-results/**/*.xml"
