@@ -4,7 +4,7 @@ namespace RCM.API.Endpoints
 {
     public static class ClaimsEndpoints
     {
-        // CallJob
+        // Calls
 
         public static string GetCallJobEndpoint() =>
             $"{Config.BASE_URN}/calljob";

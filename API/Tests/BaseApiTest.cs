@@ -1,6 +1,7 @@
 ﻿using Automation.API.Models.Calls;
 using FluentValidation.Results;
 using Newtonsoft.Json;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.Calls;
@@ -10,10 +11,13 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace RCM.API.Tests
 {
+    [TestFixture]
+    [AllureNUnit]
     public abstract class BaseApiTest
     {
         // Be sure to initialize the client in SetupClients()
@@ -55,13 +59,13 @@ namespace RCM.API.Tests
 
             RestResponse<CsvImportData> response = await claimsClient.ExecuteAsync<CsvImportData>(request);
 
-            CsvImportData csvImportData = response.Data;
-            List<CsvClaimData> csvClaimData = csvImportData.CsvClaims;
+            //CsvImportData csvImportData = response.Data;
+            //List<CsvClaimData> csvClaimData = csvImportData.CsvClaims;
 
-            string jobId = await SetJobIdAsync();
-            callJobId = jobId; // Set global callJobId
+            //string jobId = await SetJobIdAsync();
+            //callJobId = jobId; // Set global callJobId
 
-            SetClaimsIds(csvImportData);
+            //SetClaimsIds(csvImportData);
         }
 
 
@@ -78,7 +82,7 @@ namespace RCM.API.Tests
                 }
 
                 Console.WriteLine($"    Status Code: {(int)response.StatusCode} - {response.StatusCode}");
-                //Console.WriteLine($"\nResponse Body: \n{PrettifyJson(response.Content)}");
+                Console.WriteLine($"\nResponse Body: \n{PrettifyJson(response.Content)}");
             }
             else
             {
@@ -196,7 +200,10 @@ namespace RCM.API.Tests
         {
             string prettifiedJson;
 
-            if (json != null)
+            Regex regEx = new Regex("[^A-Za-z0-9]");
+            bool containsSpecialCharacter = regEx.IsMatch(json);
+
+            if (json != null && !containsSpecialCharacter)
             {
                 using (StringReader stringReader = new StringReader(json))
                 using (StringWriter stringWriter = new StringWriter())
@@ -213,7 +220,7 @@ namespace RCM.API.Tests
             }
             else
             {
-                Console.WriteLine("'json' was NULL - check the Response");
+                Console.WriteLine("           NOTE: Response did not contain JSON...");
                 prettifiedJson = "";
             }
 

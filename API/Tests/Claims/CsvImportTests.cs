@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NUnit.Allure.Core;
+using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.Claims;
 using RestSharp;
@@ -10,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace RCM.API.Tests.Claims
 {
+    [TestFixture]
+    [AllureNUnit]
     public class CsvImportTests : BaseApiTest
     {
         [TestCase(false, "Random-20Rows.csv", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CsvImport_POST_200")]
@@ -32,12 +35,12 @@ namespace RCM.API.Tests.Claims
             CsvImportData csvImportData = response.Data;
             List<CsvClaimData> csvClaimData = csvImportData.CsvClaims;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
 
@@ -51,12 +54,12 @@ namespace RCM.API.Tests.Claims
 
             CsvImport csvImport = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
 
@@ -70,8 +73,6 @@ namespace RCM.API.Tests.Claims
 
             CsvImport csvImport = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -79,6 +80,8 @@ namespace RCM.API.Tests.Claims
                 Assert.That(csvImport.Limit, Is.EqualTo(limit));
                 Assert.That(csvImport.Data.Count, Is.LessThanOrEqualTo(limit));
                 Assert.That(csvImport.Offset, Is.EqualTo(offset));
+
+                LogResults(response);
             });
         }
 
@@ -100,8 +103,6 @@ namespace RCM.API.Tests.Claims
             CsvImport csvImport = response.Data;
             List<CsvImportData> csvImportData = csvImport.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -111,6 +112,8 @@ namespace RCM.API.Tests.Claims
                 {
                     Assert.That(csvImportData[i].Id, Is.EqualTo(value));
                 }
+
+                LogResults(response);
             });
         }
 
@@ -127,8 +130,6 @@ namespace RCM.API.Tests.Claims
             CsvImport csvImport = response.Data;
             List<CsvImportData> csvImportData = csvImport.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -138,6 +139,8 @@ namespace RCM.API.Tests.Claims
                 {
                     Assert.That(csvImportData[i].Created, Is.GreaterThanOrEqualTo(csvImportData[i - 1].Created));
                 }
+
+                LogResults(response);
             });
         }
 
@@ -151,12 +154,12 @@ namespace RCM.API.Tests.Claims
 
             CsvImportData csvImportData = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
     }

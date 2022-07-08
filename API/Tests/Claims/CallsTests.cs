@@ -1,11 +1,9 @@
 ﻿using Automation.API.Models.Calls;
-using FluentValidation.Results;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.Calls;
 using RCM.API.Models.Claims;
-using RCM.API.Validators.Calls;
-using RCM.API.Validators.Claims;
 using RestSharp;
 using System;
 using System.Net;
@@ -13,7 +11,9 @@ using System.Threading.Tasks;
 
 namespace RCM.API.Tests.Claims
 {
-    public class CallJobTests : BaseApiTest
+    [TestFixture]
+    [AllureNUnit]
+    public class CallsTests : BaseApiTest
     {
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_200"), Order(0)]
         public async Task AllCallJobs(ResponseStatus status, HttpStatusCode code)
@@ -25,15 +25,12 @@ namespace RCM.API.Tests.Claims
             CallJob callJob = response.Data;
             callJobId = callJob.Data[0].JobId;
 
-            CallJobValidator validator = new CallJobValidator();
-            ValidationResult results = validator.Validate(callJob);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
 
-                LogResults(response, results);
+                LogResults(response);
             });
         }
 
@@ -86,8 +83,8 @@ namespace RCM.API.Tests.Claims
         }
 
 
-        [TestCase("jobId", true, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_Sort_200")]
-        [TestCase("jobId", false, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_Sort_200")]
+        [TestCase("jobId", true, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_Sort_Descending_200")]
+        [TestCase("jobId", false, ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_CallJob_GET_AllCallJobs_Sort_Ascending_200")]
         public async Task AllCallJobs_Sort(string path, bool descending, ResponseStatus status, HttpStatusCode code)
         {
             var sort = SetSort(path, descending);
@@ -134,18 +131,13 @@ namespace RCM.API.Tests.Claims
 
             CallJobData callJobData = response.Data;
 
-            CallJobDataValidator validator = new CallJobDataValidator();
-            ValidationResult results = validator.Validate(callJobData);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
                 Assert.That(callJobData.JobId, Is.EqualTo(callJobId));
 
-                Assert.That(results.IsValid, Is.True);
-
-                LogResults(response, results);
+                LogResults(response);
             });
         }
 
@@ -171,15 +163,12 @@ namespace RCM.API.Tests.Claims
 
             CallJobData callJobData = response.Data;
 
-            CallJobDataValidator validator = new CallJobDataValidator();
-            ValidationResult results = validator.Validate(callJobData);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
 
-                LogResults(response, results);
+                LogResults(response);
             });
         }
 
@@ -216,16 +205,13 @@ namespace RCM.API.Tests.Claims
 
             CallJobData callJobData = response.Data;
 
-            CallJobDataValidator validator = new CallJobDataValidator();
-            ValidationResult results = validator.Validate(callJobData);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
                 Assert.That(callJobData.OaiClaimId, Is.EqualTo(oaiClaimId));
 
-                LogResults(response, results);
+                LogResults(response);
             });
         }
 
@@ -260,17 +246,12 @@ namespace RCM.API.Tests.Claims
 
             CallJobData callJobData = response.Data;
 
-            CallJobDataValidator validator = new CallJobDataValidator();
-            ValidationResult results = validator.Validate(callJobData);
-
-            LogResults(response, results);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(responseStatus));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
 
-                LogResults(response, results);
+                LogResults(response);
             });
         }
     }

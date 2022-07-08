@@ -1,0 +1,10 @@
+﻿{
+  "allure": {
+    "directory": "allure-results",
+
+    // Can use the following to link test results to Jira
+    "links": [
+      "https://outboundai.atlassian.net/jira/software/c/projects/OM/issues/{issue}"
+    ]
+  }
+}

@@ -1,14 +1,15 @@
-﻿using FluentValidation.Results;
+﻿using NUnit.Allure.Core;
 using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.Common;
-using RCM.API.Validators.Common;
 using RestSharp;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace RCM.API.Tests.Calls
 {
+    [TestFixture]
+    [AllureNUnit]
     public class HealthTests : BaseApiTest
     {
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Calls_Health_GET_200")]
@@ -20,9 +21,6 @@ namespace RCM.API.Tests.Calls
 
             Health health = response.Data;
 
-            HealthValidator validator = new HealthValidator();
-            ValidationResult results = validator.Validate(health);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -30,9 +28,7 @@ namespace RCM.API.Tests.Calls
                 Assert.That(health.Branch, Is.Not.Null);
                 Assert.That(health.Commit, Is.Not.Null);
 
-                Assert.That(results.IsValid, Is.True);
-
-                LogResults(response, results);
+                LogResults(response);
             });
         }
     }

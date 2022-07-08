@@ -3,7 +3,7 @@ using RestSharp.Authenticators;
 using System.Threading.Tasks;
 
 
-namespace RCM.API.Support
+namespace RCM.API.Support.Authentication
 {
     public class RcmAuthenticator : AuthenticatorBase
     {
@@ -34,7 +34,10 @@ namespace RCM.API.Support
             };
 
             var request = new RestRequest("oauth2/token")
-                .AddParameter("grant_type", "client_credentials");
+                .AddParameter("grant_type", Config.GRANT_TYPE)
+                .AddParameter("scope", "email")
+                .AddParameter("scope", "openid")
+                .AddParameter("scope", "profile");
             
             var response = await client.PostAsync<TokenResponse>(request);
             

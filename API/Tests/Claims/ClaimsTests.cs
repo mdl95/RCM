@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.Claims;
@@ -10,7 +11,9 @@ using System.Threading.Tasks;
 
 namespace RCM.API.Tests.Claims
 {
-    public class OaiClaimTests : BaseApiTest
+    [TestFixture]
+    [AllureNUnit]
+    public class ClaimsTests : BaseApiTest
     {
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_OaiClaim_GET_AllOaiClaims_200")]
         public async Task OaiClaim_AllOaiClaims(ResponseStatus status, HttpStatusCode code)
@@ -21,12 +24,12 @@ namespace RCM.API.Tests.Claims
             
             OaiClaim oaiClaim = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
 
@@ -40,8 +43,6 @@ namespace RCM.API.Tests.Claims
 
             OaiClaim oaiClaim = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -49,6 +50,8 @@ namespace RCM.API.Tests.Claims
                 Assert.That(oaiClaim.Limit, Is.EqualTo(limit));
                 Assert.That(oaiClaim.Data.Count, Is.LessThanOrEqualTo(limit));
                 Assert.That(oaiClaim.Offset, Is.EqualTo(offset));
+
+                LogResults(response);
             });
         }
 
@@ -64,8 +67,6 @@ namespace RCM.API.Tests.Claims
 
             OaiClaim oaiClaim = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -75,6 +76,8 @@ namespace RCM.API.Tests.Claims
                 {
                     Assert.That(oaiClaim.Data[i].InsurerName, Is.EqualTo(value));
                 }
+
+                LogResults(response);
             });
         }
 
@@ -90,8 +93,6 @@ namespace RCM.API.Tests.Claims
 
             OaiClaim oaiClaim = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -102,6 +103,8 @@ namespace RCM.API.Tests.Claims
                     Assert.That(DateTime.Parse(oaiClaim.Data[i].Created),
                         Is.GreaterThanOrEqualTo(DateTime.Parse(oaiClaim.Data[i - 1].Created)));
                 }
+
+                LogResults(response);
             });
         }
 
@@ -150,12 +153,12 @@ namespace RCM.API.Tests.Claims
 
             OaiClaim oaiClaimData = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(ResponseStatus.Completed));
                 Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+
+                LogResults(response);
             });
         }
 
@@ -174,12 +177,12 @@ namespace RCM.API.Tests.Claims
 
             OaiClaim oaiClaim = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
 
@@ -193,12 +196,12 @@ namespace RCM.API.Tests.Claims
 
             OaiClaim oaiClaim = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
 
@@ -214,8 +217,6 @@ namespace RCM.API.Tests.Claims
 
             OaiClaim oaiClaim = JsonConvert.DeserializeObject<OaiClaim>(response.Content);
 
-            LogResults(response);
-
             for (int i = 0; i < oaiClaim.Occurrences.Count; ++i)
             {
                 totalCount += oaiClaim.Occurrences[i].Count;
@@ -226,6 +227,8 @@ namespace RCM.API.Tests.Claims
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
                 Assert.That(oaiClaim.Count, Is.EqualTo(totalCount));
+
+                LogResults(response);
             });
         }
 
@@ -241,12 +244,12 @@ namespace RCM.API.Tests.Claims
 
             OaiClaim oaiClaim = JsonConvert.DeserializeObject<OaiClaim>(response.Content);
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
 
@@ -263,8 +266,6 @@ namespace RCM.API.Tests.Claims
             
             OaiClaim oaiClaim = JsonConvert.DeserializeObject<OaiClaim>(response.Content);
 
-            LogResults(response);
-
             for (int i = 0; i < oaiClaim.Occurrences.Count; ++i)
             {
                 totalCount += oaiClaim.Occurrences[i].Count;
@@ -280,6 +281,8 @@ namespace RCM.API.Tests.Claims
                 {
                     Assert.That(oaiClaim.Occurrences[i].Count, Is.GreaterThanOrEqualTo(oaiClaim.Occurrences[i - 1].Count));
                 }
+
+                LogResults(response);
             });
         }
 
@@ -293,12 +296,12 @@ namespace RCM.API.Tests.Claims
 
             OaiClaim oaiClaim = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
 
@@ -311,8 +314,6 @@ namespace RCM.API.Tests.Claims
             RestResponse<OaiClaim> response = await claimsClient.ExecuteAsync<OaiClaim>(request);
             OaiClaim oaiClaim = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -320,6 +321,8 @@ namespace RCM.API.Tests.Claims
                 Assert.That(oaiClaim.Limit, Is.EqualTo(limit));
                 Assert.That(oaiClaim.Data.Count, Is.LessThanOrEqualTo(limit));
                 Assert.That(oaiClaim.Offset, Is.EqualTo(offset));
+
+                LogResults(response);
             });
         }
 
@@ -334,12 +337,12 @@ namespace RCM.API.Tests.Claims
             RestResponse<OaiClaim> response = await claimsClient.ExecuteAsync<OaiClaim>(request);
             OaiClaim oaiClaim = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
 
@@ -355,8 +358,6 @@ namespace RCM.API.Tests.Claims
 
             OaiClaim oaiClaim = JsonConvert.DeserializeObject<OaiClaim>(response.Content);
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -367,6 +368,8 @@ namespace RCM.API.Tests.Claims
                     Assert.That(oaiClaim.Count, Is.LessThanOrEqualTo(oaiClaim.Count));
                     //Assert.That(oaiClaim.Data[i].Group, Is.LessThanOrEqualTo(oaiClaim.Data[i - 1].Group));
                 }
+
+                LogResults(response);
             });
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.Claims;
@@ -10,7 +11,9 @@ using System.Threading.Tasks;
 
 namespace RCM.API.Tests.Claims
 {
-    public class EntityTests : BaseApiTest
+    [TestFixture]
+    [AllureNUnit]
+    public class EntitiesTests : BaseApiTest
     {
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_Entity_GET_AllEntities_200"), Order(0)]
         public async Task Entity_AllEntities(ResponseStatus status, HttpStatusCode code)
@@ -22,12 +25,12 @@ namespace RCM.API.Tests.Claims
             List<Entity> entities = JsonConvert.DeserializeObject<List<Entity>>(response.Content);
             entityId = entities[0].EntityId; // Set global entityId
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
 
@@ -40,13 +43,14 @@ namespace RCM.API.Tests.Claims
             RestResponse response = await claimsClient.ExecuteAsync(request);
 
             List<Entity> entities = JsonConvert.DeserializeObject<List<Entity>>(response.Content);
-            LogResults(response);
 
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
                 Assert.That(entities.Count, Is.EqualTo(limit));
+
+                LogResults(response);
             });
         }
 
@@ -61,7 +65,6 @@ namespace RCM.API.Tests.Claims
             RestResponse response = await claimsClient.ExecuteAsync(request);
 
             List<Entity> entities = JsonConvert.DeserializeObject<List<Entity>>(response.Content);
-            LogResults(response);
 
             Assert.Multiple(() =>
             {
@@ -69,6 +72,8 @@ namespace RCM.API.Tests.Claims
                 Assert.That(response.StatusCode, Is.EqualTo(code));
                 Assert.That(entities.Count, Is.EqualTo(1));
                 Assert.That(entities[0].Slot, Is.EqualTo(value));
+
+                LogResults(response);
             });
         }
 
@@ -83,7 +88,6 @@ namespace RCM.API.Tests.Claims
             RestResponse response = await claimsClient.ExecuteAsync(request);
 
             List<Entity> entities = JsonConvert.DeserializeObject<List<Entity>>(response.Content);
-            LogResults(response);
 
             Assert.Multiple(() =>
             {
@@ -94,6 +98,8 @@ namespace RCM.API.Tests.Claims
                 {
                     Assert.That(entities[i].Slot, Is.LessThanOrEqualTo(entities[i - 1].Slot));
                 }
+
+                LogResults(response);
             });
         }
 
@@ -112,13 +118,13 @@ namespace RCM.API.Tests.Claims
 
             Entity entity = JsonConvert.DeserializeObject<Entity>(response.Content);
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(ResponseStatus.Completed));
                 Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
                 Assert.That(entity.EntityId, Is.EqualTo(entityId));
+
+                LogResults(response);
             });
         }
     }

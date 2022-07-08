@@ -1,8 +1,7 @@
-﻿using FluentValidation.Results;
+﻿using NUnit.Allure.Core;
 using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.IvrInfoExtractor;
-using RCM.API.Validators.IvrInfoExtractor;
 using RestSharp;
 using System.Collections.Generic;
 using System.Net;
@@ -10,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace RCM.API.Tests.IvrInfoExtractor
 {
+    [TestFixture]
+    [AllureNUnit]
     public class TranscriptExtractionTests : BaseApiTest
     {
         [TestCase("3fa85f64-5717-4562-b3fc-2c963f66afa6", "IvrInfoExtractor Auto-Message...", "3fa85f64-5717-4562-b3fc-2c963f66afa6", 
@@ -38,17 +39,12 @@ namespace RCM.API.Tests.IvrInfoExtractor
 
             TranscriptExtraction transcriptExtraction = response.Data;
 
-            TranscriptExtractionValidator validator = new TranscriptExtractionValidator();
-            ValidationResult results = validator.Validate(transcriptExtraction);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
 
-                Assert.That(results.IsValid, Is.True);
-
-                LogResults(response, results);
+                LogResults(response);
             });
         }
     }

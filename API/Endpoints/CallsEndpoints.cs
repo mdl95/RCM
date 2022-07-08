@@ -9,13 +9,13 @@ namespace RCM.API.Endpoints
         public static string GetJobsEndpoint() =>
             $"{Config.BASE_URN}/jobs";
 
-        public static string GetJobsEndpointWithLimitAndOffset(int limit, long offset) =>
+        public static string GetJobs_LimitAndOffset_Endpoint(int limit, long offset) =>
             $"{Config.BASE_URN}/jobs?limit={limit}&offset={offset}";
 
-        public static string GetJobsEndpointWithFilter(string[] filter) =>
-            $"{Config.BASE_URN}/jobs?filter={filter}";
+        public static string GetJobs_Filter_Endpoint(string filters) =>
+            $"{Config.BASE_URN}/jobs?filter={filters}";
 
-        public static string GetJobsEndpointWithSort(string[] sort) =>
+        public static string GetJobs_Sort_Endpoint(string sort) =>
             $"{Config.BASE_URN}/jobs?sort={sort}";
 
         public static string GetJobEndpoint(string id) =>

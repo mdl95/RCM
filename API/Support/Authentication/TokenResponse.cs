@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace RCM.API.Support
+namespace RCM.API.Support.Authentication
 {
     public record TokenResponse
     {

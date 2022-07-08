@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NUnit.Allure.Core;
+using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.Common;
 using RestSharp;
@@ -7,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace RCM.API.Tests.Claims
 {
+    [TestFixture]
+    [AllureNUnit]
     public class HealthTests : BaseApiTest
     {
         [TestCase(ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_Health_GET_200")]
@@ -18,12 +21,12 @@ namespace RCM.API.Tests.Claims
 
             Health health = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
     }

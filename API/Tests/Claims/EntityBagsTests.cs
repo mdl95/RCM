@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NUnit.Allure.Core;
+using NUnit.Framework;
 using RCM.API.Endpoints;
 using RCM.API.Models.Claims;
 using RestSharp;
@@ -8,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace RCM.API.Tests.Claims
 {
-    public class EntityBagTests : BaseApiTest
+    [TestFixture]
+    [AllureNUnit]
+    public class EntityBagsTests : BaseApiTest
     {
         [TestCase("", ResponseStatus.Completed, HttpStatusCode.OK, TestName = "API_Claims_EntityBagClaimHistory_GET_200"), Order(0)]
         public async Task EntityBagClaimHistory(string oaiClaimId, ResponseStatus status, HttpStatusCode code)
@@ -25,12 +28,12 @@ namespace RCM.API.Tests.Claims
             EntityBag entityBag = response.Data;
             entityBagId = entityBag.Data[0].EntityBagId; // Set global entityBagId
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(ResponseStatus.Completed));
                 Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+
+                LogResults(response);
             });
         }
 
@@ -44,12 +47,12 @@ namespace RCM.API.Tests.Claims
 
             EntityBag entityBag = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
+
+                LogResults(response);
             });
         }
 
@@ -63,8 +66,6 @@ namespace RCM.API.Tests.Claims
 
             EntityBag entityBag = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -72,6 +73,8 @@ namespace RCM.API.Tests.Claims
                 Assert.That(entityBag.Limit, Is.EqualTo(limit));
                 Assert.That(entityBag.Data.Count, Is.LessThanOrEqualTo(limit));
                 Assert.That(entityBag.Offset, Is.EqualTo(offset));
+
+                LogResults(response);
             });
         }
 
@@ -87,13 +90,13 @@ namespace RCM.API.Tests.Claims
 
             EntityBag entityBag = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
                 //TODO: Filter assertion
+
+                LogResults(response);
             });
         }
 
@@ -109,8 +112,6 @@ namespace RCM.API.Tests.Claims
 
             EntityBag entityBag = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -121,6 +122,8 @@ namespace RCM.API.Tests.Claims
                     Assert.That(entityBag.Data[0].EntityVersions[i].Established.Created,
                         Is.GreaterThanOrEqualTo(entityBag.Data[0].EntityVersions[i - 1].Established.Created));
                 }
+
+                LogResults(response);
             });
         }
 
@@ -139,8 +142,6 @@ namespace RCM.API.Tests.Claims
 
             EntityBag entityBag = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -150,6 +151,8 @@ namespace RCM.API.Tests.Claims
                 {
                     Assert.That(entityBag.EntityVersions[i].Established.EntityBagId, Is.EqualTo(entityBagId));
                 }
+
+                LogResults(response);
             });
         }
 
@@ -168,8 +171,6 @@ namespace RCM.API.Tests.Claims
 
             EntityBag entityBag = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -179,6 +180,8 @@ namespace RCM.API.Tests.Claims
                 {
                     Assert.That(entityBag.Data[i].CallJob.Data[0].OaiClaimId, Is.EqualTo(oaiClaimId));
                 }
+
+                LogResults(response);
             });
         }
 
@@ -197,8 +200,6 @@ namespace RCM.API.Tests.Claims
 
             EntityBag entityBag = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -206,6 +207,8 @@ namespace RCM.API.Tests.Claims
                 Assert.That(entityBag.Limit, Is.EqualTo(limit));
                 Assert.That(entityBag.Data.Count, Is.LessThanOrEqualTo(limit));
                 Assert.That(entityBag.Offset, Is.EqualTo(offset));
+
+                LogResults(response);
             });
         }
 
@@ -227,13 +230,13 @@ namespace RCM.API.Tests.Claims
 
             EntityBag entityBag = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
                 Assert.That(response.StatusCode, Is.EqualTo(code));
                 //TODO: Filter Assert
+
+                LogResults(response);
             });
         }
 
@@ -254,8 +257,6 @@ namespace RCM.API.Tests.Claims
 
             EntityBag entityBag = response.Data;
 
-            LogResults(response);
-
             Assert.Multiple(() =>
             {
                 Assert.That(response.ResponseStatus, Is.EqualTo(status));
@@ -266,6 +267,8 @@ namespace RCM.API.Tests.Claims
                     Assert.That(entityBag.Data[0].EntityVersions[i].Established.Created,
                         Is.GreaterThanOrEqualTo(entityBag.Data[0].EntityVersions[i - 1].Established.Created));
                 }
+
+                LogResults(response);
             });
         }
     }
